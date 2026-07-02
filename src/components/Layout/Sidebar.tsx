@@ -6,7 +6,8 @@ import {
   Target,
   Calculator,
   Wallet,
-  X
+  X,
+  LogOut
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -14,13 +15,15 @@ interface SidebarProps {
   setActiveTab: (tab: string) => void;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  onLogout: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   activeTab,
   setActiveTab,
   isOpen,
-  setIsOpen
+  setIsOpen,
+  onLogout
 }) => {
   const menuItems = [
     { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
@@ -54,7 +57,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
             <div>
               <span className="text-xl font-bold tracking-tight text-white">FinTrack</span>
-              <span className="block text-xs font-semibold text-violet-400">Dashboard Universitário</span>
             </div>
           </div>
           {/* Close button for mobile */}
@@ -92,15 +94,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </nav>
 
         {/* Footer Info */}
-        <div className="border-t border-slate-900 pt-4 px-2">
+        <div className="border-t border-slate-900 pt-4 px-2 space-y-2">
           <div className="rounded-xl bg-slate-900/40 p-3.5 border border-slate-800/30">
             <p className="text-xs font-medium text-slate-500">Desenvolvido por:</p>
             <p className="text-xs font-bold text-slate-300">Isaque F.</p>
             <div className="mt-1.5 flex items-center justify-between text-[10px] text-violet-400 font-semibold">
-              <span>Projeto de Faculdade</span>
+              <span>App Pessoal</span>
               <span className="rounded bg-violet-950 px-1 py-0.5 border border-violet-800/50">v1.0</span>
             </div>
           </div>
+          
+          <button
+            onClick={onLogout}
+            className="flex w-full items-center gap-3.5 rounded-xl px-4 py-3 text-sm font-medium text-rose-400 hover:bg-rose-950/20 hover:text-rose-300 transition-all duration-200"
+          >
+            <LogOut className="h-5 w-5 text-rose-500" />
+            Sair da Conta
+          </button>
         </div>
       </aside>
     </>

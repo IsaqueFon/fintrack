@@ -7,10 +7,19 @@ import { TransactionsView } from './components/Transactions/TransactionsView';
 import { BudgetsView } from './components/Budgets/BudgetsView';
 import { GoalsView } from './components/Goals/GoalsView';
 import { CalculatorsView } from './components/Calculators/CalculatorsView';
+import { Login } from './components/Auth/Login';
 
 function AppContent() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('fintrack_auth') === 'true';
+  });
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('fintrack_auth');
+    setIsAuthenticated(false);
+  };
 
   // Roteamento interno simples
   const renderTabContent = () => {
@@ -30,6 +39,10 @@ function AppContent() {
     }
   };
 
+  if (!isAuthenticated) {
+    return <Login onLoginSuccess={() => setIsAuthenticated(true)} />;
+  }
+
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-slate-950">
       {/* Sidebar Navigation */}
@@ -38,6 +51,7 @@ function AppContent() {
         setActiveTab={setActiveTab}
         isOpen={sidebarOpen}
         setIsOpen={setSidebarOpen}
+        onLogout={handleLogout}
       />
 
       {/* Main Content Area */}
@@ -62,3 +76,4 @@ export default function App() {
     </FinanceProvider>
   );
 }
+

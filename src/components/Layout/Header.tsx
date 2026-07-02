@@ -61,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setSidebarOpen }) => 
         <div className="flex items-center gap-2.5 border-l border-slate-800 pl-4">
           <div className="hidden text-right md:block">
             <p className="text-xs font-semibold text-slate-200">Isaque F.</p>
-            <p className="text-[10px] font-medium text-slate-500">Estudante de TI</p>
+            <p className="text-[10px] font-medium text-slate-500">Desenvolvedor</p>
           </div>
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-600/10 text-violet-400 border border-violet-500/20">
             <User className="h-5 w-5" />
